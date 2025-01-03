@@ -70,7 +70,7 @@ pipeline {
             steps {
                 script {
                     // Run tests
-                    withEnv(["PATH+JDK=${JAVA_HOME}/bin"]) {
+                    {//withEnv(["PATH+JDK=${JAVA_HOME}/bin"]) {
                         sh "mvn test"
                     }
                 }
