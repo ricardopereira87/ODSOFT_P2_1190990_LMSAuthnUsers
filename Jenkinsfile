@@ -131,8 +131,8 @@ pipeline {
                 script {
                     echo "Pushing image ..."
                     sh """
-                    cat mypassword.txt | docker login -u 1190990 --password-stdin &&
-                    docker push ${DOCKER_REPO}:${IMAGE_TAG}"
+                    cat /mypassword.txt | docker login -u 1190990 --password-stdin &&
+                    docker push ${DOCKER_REPO}:${IMAGE_TAG}
                     """
                 }
             }
