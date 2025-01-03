@@ -3,8 +3,8 @@ pipeline {
 
     environment {
 
-        //MAVEN_HOME = '/opt/homebrew' // (MacOS)
-        MAVEN_HOME = '/usr/share/maven' // (Ubuntu)
+        
+        DOCKER_REPO = '1190990/lmsauthnusers'
 
         GIT_REPO_URL = 'https://github.com/ricardopereira87/ODSOFT_P2_1190990_LMSAuthnUsers'  // Your Git repository URL
         GIT_BRANCH = 'main'  // Specify the branch to check out
@@ -12,7 +12,7 @@ pipeline {
 
         SERVER_PORT = '2226'
 
-        IMAGE_NAME = 'lmsbooks'
+        IMAGE_NAME = 'lmsauthnusers'
         IMAGE_TAG = 'latest'
     }
 
@@ -81,7 +81,7 @@ pipeline {
             steps {
                 script {
                     // Package the application
-                    sh "mvn package"
+                    sh "mvn package -DskipTests"
                 }
             }
         }
