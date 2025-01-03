@@ -4,7 +4,7 @@ pipeline {
     environment {
 
         
-        DOCKER_REPO = '1190990/lmsauthnusers'
+        DOCKER_REPO = '1190990/lmsusers'
 
         GIT_REPO_URL = 'https://github.com/ricardopereira87/ODSOFT_P2_1190990_LMSAuthnUsers'  // Your Git repository URL
         GIT_BRANCH = 'main'  // Specify the branch to check out
@@ -12,7 +12,7 @@ pipeline {
 
         SERVER_PORT = '2226'
 
-        IMAGE_NAME = 'lmsauthnusers'
+        IMAGE_NAME = 'lmsusers'
         IMAGE_TAG = 'latest'
     }
 
