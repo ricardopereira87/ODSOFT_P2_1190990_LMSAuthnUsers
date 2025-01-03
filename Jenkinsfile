@@ -133,6 +133,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_PASSWORD')]) {
                         sh """
                         echo \$DOCKER_PASSWORD | docker login -u 1190990 --password-stdin &&
+                        docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${DOCKER_REPO}:${IMAGE_TAG} &&
                         docker push ${DOCKER_REPO}:${IMAGE_TAG}
                         """
                     }
