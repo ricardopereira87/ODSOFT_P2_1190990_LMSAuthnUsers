@@ -86,6 +86,16 @@ pipeline {
             }
         }
 
+        stage('Tag Previous Docker Image') {
+            steps {
+                script {
+                    sh """
+                    docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:rollback
+                    """
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -95,6 +105,7 @@ pipeline {
                 }
             }
         }
+
 
         stage('Deploy with Docker Compose') {
             steps {
@@ -110,6 +121,18 @@ pipeline {
 
                         docker-compose -f docker-compose.yml up -d --force-recreate
 
+                    """
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    echo "Pushing image ..."
+                    sh """
+                    cat mypassword.txt | docker login -u 1190990 --password-stdin &&
+                    docker push ${DOCKER_REPO}:${IMAGE_TAG}"
                     """
                 }
             }
