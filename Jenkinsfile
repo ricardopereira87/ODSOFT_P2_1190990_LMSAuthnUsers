@@ -102,13 +102,13 @@ pipeline {
                     sh """
 
                         if ! docker ps --filter "name=rabbitmq_in_lms_network" --format '{{.Names}}' | grep -q rabbitmq_in_lms_network; then
-                          docker compose -f docker-compose-rabbitmq+postgres.yml up -d
+                          docker-compose -f docker-compose-rabbitmq+postgres.yml up -d
                         else
                           echo "RabbitMQ + postgres container already running."
                         fi
 
 
-                        docker compose -f docker-compose.yml up -d --force-recreate
+                        docker-compose -f docker-compose.yml up -d --force-recreate
 
                     """
                 }
