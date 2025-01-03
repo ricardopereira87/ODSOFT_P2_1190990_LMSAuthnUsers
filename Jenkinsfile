@@ -130,7 +130,7 @@ pipeline {
             steps {
                 script {
                     echo "Pushing image ..."
-                    withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    withCredentials([string(credentialsId: 'docker', variable: 'DOCKER_PASSWORD')]) {
                         sh """
                         echo \$DOCKER_PASSWORD | docker login -u 1190990 --password-stdin &&
                         docker push ${DOCKER_REPO}:${IMAGE_TAG}
