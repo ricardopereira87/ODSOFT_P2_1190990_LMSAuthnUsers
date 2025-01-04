@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        mvn clean install -DskipTests
+                        mvn clean install
                     """
                 }
             }
@@ -153,6 +153,9 @@ pipeline {
                 }
             }
         }
+
+        
+    
     }
 
     post {
