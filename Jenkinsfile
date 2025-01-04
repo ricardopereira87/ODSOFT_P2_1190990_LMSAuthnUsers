@@ -21,6 +21,8 @@ pipeline {
         stage('Get Branch Name') {
             steps {
                 script {
+
+                    echo "All environment variables: ${env}"
                     // Get the current branch name
                     def branchName = env.BRANCH_NAME
 
