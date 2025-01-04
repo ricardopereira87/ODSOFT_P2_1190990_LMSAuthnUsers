@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     // Get the current branch name
-                    def branchName = env.GIT_BRANCH
+                    def branchName = env.BRANCH_NAME
 
                     // Output the branch name
                     echo "Current branch: ${branchName}"
