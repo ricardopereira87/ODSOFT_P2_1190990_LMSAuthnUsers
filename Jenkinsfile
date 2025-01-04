@@ -123,6 +123,8 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 script {
+                    
+                    if (env.GIT_BRANCH == 'main') {
                     sh """
 
                         if ! docker ps --filter "name=rabbitmq_in_lms_network" --format '{{.Names}}' | grep -q rabbitmq_in_lms_network; then
@@ -135,6 +137,9 @@ pipeline {
                         docker-compose -f docker-compose.yml up -d --force-recreate
 
                     """
+                    } else if (env.GIT_BRANCH == 'preprod') {
+                       echo "Deploy is done in prod..."
+                    }
                 }
             }
         }
