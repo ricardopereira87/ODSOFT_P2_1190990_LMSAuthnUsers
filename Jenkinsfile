@@ -26,17 +26,17 @@ pipeline {
                     def environment = env.ENVIRONMENT
                     echo "Environment Variable: ${environment}"
                     
-                    def branch
+                    // Set the branch based on environment
                     if (environment == 'preprod') {
-                        branch = 'preprod'
+                        env.BRANCH = 'preprod'
                     } else if (environment == 'prod') {
-                        branch = 'main'
+                        env.BRANCH = 'main'
                     } else {
                         error "Unknown environment: ${environment}"
                     }
 
                     // Output the determined branch
-                    echo "Branch to be used: ${branch}"
+                    echo "Branch to be used: ${env.BRANCH}"
                 }
             }
         }
