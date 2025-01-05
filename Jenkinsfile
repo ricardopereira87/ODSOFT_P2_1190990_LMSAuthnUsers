@@ -22,8 +22,10 @@ pipeline {
         stage('Determine Branch') {
             steps {
                 script {
+                    // Access the globally defined ENVIRONMENT variable
+                    def environment = env.ENVIRONMENT
+                    echo "Environment Variable: ${environment}"
                     
-                    def environment = sh(script: 'echo $ENVIRONMENT', returnStdout: true).trim()
                     def branch
                     if (environment == 'preproduction') {
                         branch = 'preprod'
@@ -32,8 +34,8 @@ pipeline {
                     } else {
                         error "Unknown environment: ${environment}"
                     }
-                    
-                    // Set the branch variable for use in later stages
+
+                    // Output the determined branch
                     echo "Branch to be used: ${branch}"
                 }
             }
