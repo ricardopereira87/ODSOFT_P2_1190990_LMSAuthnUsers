@@ -27,9 +27,9 @@ pipeline {
                     echo "Environment Variable: ${environment}"
                     
                     def branch
-                    if (environment == 'preproduction') {
+                    if (environment == 'preprod') {
                         branch = 'preprod'
-                    } else if (environment == 'production') {
+                    } else if (environment == 'prod') {
                         branch = 'main'
                     } else {
                         error "Unknown environment: ${environment}"
