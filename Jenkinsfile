@@ -22,9 +22,8 @@ pipeline {
         stage('Determine Branch') {
             steps {
                 script {
-                    // Define the branch based on the environment
-                    def environment
-                    environment = sh(script: 'echo $ENVIRONMENT', returnStdout: true).trim()
+                    
+                    def environment = sh(script: 'echo $ENVIRONMENT', returnStdout: true).trim()
                     def branch
                     if (environment == 'preproduction') {
                         branch = 'preprod'
