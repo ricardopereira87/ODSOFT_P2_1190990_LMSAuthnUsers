@@ -15,7 +15,6 @@ pipeline {
         IMAGE_NAME = 'lmsusers'
         IMAGE_TAG = 'latest'
 
-        ENVIRONMENT = sh(script: 'echo $ENVIRONMENT', returnStdout: true).trim()
     }
 
     stages {
@@ -24,13 +23,15 @@ pipeline {
             steps {
                 script {
                     // Define the branch based on the environment
+                    def environment
+                    environment = sh(script: 'echo $ENVIRONMENT', returnStdout: true).trim()
                     def branch
-                    if (ENVIRONMENT == 'preproduction') {
+                    if (environment == 'preproduction') {
                         branch = 'preprod'
-                    } else if (ENVIRONMENT == 'production') {
+                    } else if (environment == 'production') {
                         branch = 'main'
                     } else {
-                        error "Unknown environment: ${ENVIRONMENT}"
+                        error "Unknown environment: ${environment}"
                     }
                     
                     // Set the branch variable for use in later stages
