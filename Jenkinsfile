@@ -238,7 +238,7 @@ pipeline {
             }
         }
 
-        stage('Wait for Admin Confirmation') {
+        stage('Wait for Admin Confirmation!') {
             when {
                 expression {
                     env.BRANCH == 'preprod'
